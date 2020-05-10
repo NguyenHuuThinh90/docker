@@ -2,17 +2,14 @@ pipeline {
     agent any
     environment {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
-		mvn = '/var/jenkins_home/tools_jk/apache-maven-3.6.1/bin/'
-		JAVA_HOME = "${tool 'java11'}"
-		PATH="${JAVA_HOME}/bin:${PATH}"
+		mvnDir = '/var/jenkins_home/tools_jk/apache-maven-3.6.1/bin/'
+
     }
 	
     stages {
         stage('Build') {
             steps {
-				withMaven(maven: 'maven_361', jdk: 'java11') {
-					sh "${mvn}mvn clean -f ${MAVEN_PATH} install"
-				}
+				sh "${mvnDir}mvn clean -f ${MAVEN_PATH} install"
             }
             post {
                 success {
