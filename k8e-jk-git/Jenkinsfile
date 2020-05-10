@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				withMaven() {
+				withMaven(maven: 'maven_361') {
 					sh "mvn clean -f ${MAVEN_PATH} install"
 				}
             }
