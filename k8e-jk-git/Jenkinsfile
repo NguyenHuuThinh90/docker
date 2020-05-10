@@ -33,9 +33,7 @@ pipeline {
 		}
         stage('Build') {
             steps {
-				withMaven(jdk: 'jdk11'){
-					sh "${mvnDir}mvn -f ${MAVEN_PATH} install"
-				}
+				sh "${mvnDir}mvn -f ${MAVEN_PATH} install"
             }
             post {
                 success {
