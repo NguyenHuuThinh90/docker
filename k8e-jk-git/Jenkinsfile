@@ -3,6 +3,8 @@ pipeline {
     environment {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
 		mvn = '/var/jenkins_home/tools_jk/apache-maven-3.6.1/bin/'
+		JAVA_HOME = "${tool 'java11'}"
+		PATH="${JAVA_HOME}/bin:${PATH}"
     }
 	
     stages {
