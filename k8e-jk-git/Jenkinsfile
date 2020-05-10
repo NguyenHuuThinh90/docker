@@ -7,9 +7,15 @@ pipeline {
     }
 	
     stages {
+		stage('Clean') {
+			steps {
+				echo "${mvnDir}"
+				sh "${mvnDir}mvn clean"
+			}
+		}
         stage('Build') {
             steps {
-				sh "${mvnDir}mvn clean -f ${MAVEN_PATH} install"
+				sh "${mvnDir}mvn -f ${MAVEN_PATH} install"
             }
             post {
                 success {
