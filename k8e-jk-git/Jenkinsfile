@@ -10,7 +10,7 @@ pipeline {
 		stage('Clean') {
 			steps {
 				echo "${mvnDir}"
-				sh "${mvnDir}mvn clean"
+				sh "${mvnDir}mvn -f ${MAVEN_PATH} clean"
 			}
 		}
         stage('Build') {
