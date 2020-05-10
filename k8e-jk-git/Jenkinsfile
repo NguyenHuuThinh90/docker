@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
 	maven 'maven-361'
-	jdk 'java-11'
     }
     environment {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
