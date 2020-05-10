@@ -1,9 +1,17 @@
 pipeline {
     agent any
+    environment {
+        MAVEN_PATH = "k8e-jk-git/pom.xml"
+    }
     stages {
-        stage('build') {
+        stage("Clean") {
             steps {
-                bat 'mvn clean -f k8e-jk-git/pom.xml  install'
+                bat 'mvn -f  ${MAVEN_PATH} clean'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn -f  ${MAVEN_PATH} install'
             }
             post {
                 success {
