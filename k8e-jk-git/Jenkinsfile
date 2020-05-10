@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'dir'
-                bat 'cd k8e-jk-git'
-                bat 'mvn clean install'
+                bat 'mvn clean -f k8e-jk-git/pom.xml  install'
             }
             post {
                 success {
