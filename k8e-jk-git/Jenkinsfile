@@ -1,5 +1,6 @@
 pipeline {
     agent any
+	// Environment 
     environment {
 		fileTarget = 'demo.war'
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
@@ -8,12 +9,12 @@ pipeline {
 		destinationDir = '../../tools_jk/build/'
 
     }
-	
+	// Declare global config tool
 	tools {
 		jdk 'jdk11' 
 		maven 'maven361'
 	}
-	
+	// Check version
     stages {
 		stage('test-version') {
 			steps {
