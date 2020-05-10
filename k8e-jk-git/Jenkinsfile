@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage("Clean") {
             steps {
-                bat "mvn -f  ${MAVEN_PATH} clean"
+                sh "mvn -f  ${MAVEN_PATH} clean"
             }
         }
         stage('Build') {
             steps {
-                bat "mvn -f  ${MAVEN_PATH} install"
+                sh "mvn -f  ${MAVEN_PATH} install"
             }
             post {
                 success {
