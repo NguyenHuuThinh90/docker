@@ -20,7 +20,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						echo "parameter ${params.envir}"
+						echo "parameter select ${params.envir}"
 						sh "java -version"
 						sh "mvn -version"
 					} catch (err) {
