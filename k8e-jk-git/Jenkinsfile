@@ -8,12 +8,6 @@ pipeline {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
     }
     stages {
-    	stage("check version") {
-	    steps {
-		sh 'java -version'
-		sh 'mvn -version'
-	    }	
-	}
         stage("Clean") {
             steps {
                 sh "mvn -f  ${MAVEN_PATH} clean"
