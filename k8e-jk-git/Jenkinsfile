@@ -6,9 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               withMaven(maven: 'maven-361', jdk: 'java-11') {
 	       	sh "mvn clean -f ${MAVEN_PATH} install"
-	       }
             }
             post {
                 success {
