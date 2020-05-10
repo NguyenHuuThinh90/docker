@@ -8,14 +8,9 @@ pipeline {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
     }
     stages {
-        stage("Clean") {
-            steps {
-                sh "mvn -f  ${MAVEN_PATH} clean"
-            }
-        }
         stage('Build') {
             steps {
-                sh "mvn -f  ${MAVEN_PATH} install"
+                sh "mvn clean -f ${MAVEN_PATH} install"
             }
             post {
                 success {
