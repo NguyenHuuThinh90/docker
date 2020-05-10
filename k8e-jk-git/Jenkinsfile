@@ -1,16 +1,15 @@
 pipeline {
     agent any
-
     stages {
         stage('build') {
             steps {
-                bat 'mvn -f ./pom.xml clean install'
+                sh 'mvn -f ./pom.xml clean install'
+            }
+            post {
+                success {
+                    echo "DONE"
+                }
             }
         }
-        post {
-            success {
-                echo 'Now Archiving'
-             }
-         }
     }
 }
