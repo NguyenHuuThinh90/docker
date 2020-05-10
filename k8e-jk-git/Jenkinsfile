@@ -1,15 +1,14 @@
 pipeline {
     agent any
-    tools {
-	maven 'maven-361'
-    }
     environment {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
     }
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean -f ${MAVEN_PATH} install"
+               withMaven(maven: 'maven-361', jdk: 'java-11') {
+	       	sh "mvn clean -f ${MAVEN_PATH} install"
+	       }
             }
             post {
                 success {
