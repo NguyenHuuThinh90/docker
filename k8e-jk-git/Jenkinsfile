@@ -6,18 +6,21 @@ pipeline {
 
     }
 	
+	tools {
+		jdk: 'jdk11' 
+		maven: 'maven361'
+	}
+	
     stages {
 		stage('test-version') {
 			steps {
-				withMaven(jdk: 'jdk11', maven: 'maven361') {
-					script {
-						try {
-							sh "java -version"
-							sh "mvn -version"
-						} catch (err) {
-							echo err.getMessage()
-							echo "No detect version"
-						}
+				script {
+					try {
+						sh "java -version"
+						sh "mvn -version"
+					} catch (err) {
+						echo err.getMessage()
+						echo "No detect version"
 					}
 				}
 			}
