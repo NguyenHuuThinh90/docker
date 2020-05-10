@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage("Clean") {
             steps {
-                echo "${MAVEN_PATH}"
                 bat "mvn -f  ${MAVEN_PATH} clean"
             }
         }
