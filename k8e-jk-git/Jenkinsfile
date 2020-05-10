@@ -48,7 +48,7 @@ pipeline {
             steps {
 				echo "Target folder: ${targetDir}"
 				echo "Destination folder: ${destinationDir}"
-				mv "${targetDir} ${destinationDir}"
+				sh "mv ${targetDir} ${destinationDir}"
             }
             post {
                 success {
