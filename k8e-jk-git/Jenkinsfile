@@ -1,8 +1,11 @@
 pipeline {
     agent any
     environment {
+		fileTarget = 'demo.war'
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
 		mvnDir = '/var/jenkins_home/tools_jk/apache-maven-3.6.1/bin/'
+		targetDir = 'k8e-jk-git/target/${fileTarget}'
+		destinationDir = '../../tools_jk/build/'
 
     }
 	
@@ -37,7 +40,19 @@ pipeline {
             }
             post {
                 success {
-                    echo "DONE"
+                    echo "BUILD DONE"
+                }
+            }
+        }
+		stage('Copy') {
+            steps {
+				echo "Target folder: ${targetDir}"
+				echo "Destination folder: ${destinationDir}"
+				mv "${targetDir} ${destinationDir}"
+            }
+            post {
+                success {
+                    echo "COPY DONE"
                 }
             }
         }
