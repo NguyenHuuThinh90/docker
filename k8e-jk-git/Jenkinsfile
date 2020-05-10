@@ -3,11 +3,13 @@ pipeline {
     environment {
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
     }
+	def mvn = tool 'maven_361'
+	
     stages {
         stage('Build') {
             steps {
 				withMaven(maven: 'maven_361', jdk: 'java11') {
-					sh "mvn clean -f ${MAVEN_PATH} install"
+					sh "${mvn}/bin/mvn clean -f ${MAVEN_PATH} install"
 				}
             }
             post {
