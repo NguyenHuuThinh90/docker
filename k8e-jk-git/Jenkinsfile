@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn -f ./pom.xml clean install'
+                bat 'mvn -f ./pom.xml clean install'
             }
             post {
                 success {
