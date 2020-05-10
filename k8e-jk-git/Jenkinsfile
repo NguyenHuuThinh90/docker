@@ -1,11 +1,12 @@
 pipeline {
     agent any
     environment {
-        MAVEN_PATH = "k8e-jk-git/pom.xml"
+        MAVEN_PATH = 'k8e-jk-git/pom.xml'
     }
     stages {
         stage("Clean") {
             steps {
+                echo '${MAVEN_PATH}'
                 bat 'mvn -f  ${MAVEN_PATH} clean'
             }
         }
