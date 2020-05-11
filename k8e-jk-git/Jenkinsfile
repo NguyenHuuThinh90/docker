@@ -21,6 +21,7 @@ pipeline {
 				script {
 					try {
 						echo "parameter select ${params.branch}"
+						git version
 						sh "java -version"
 						sh "mvn -version"
 					} catch (err) {
