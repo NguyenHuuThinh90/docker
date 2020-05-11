@@ -2,10 +2,9 @@ pipeline {
     agent any
 	// Environment 
     environment {
-		fileTarget = 'demo.war'
         MAVEN_PATH = 'k8e-jk-git/pom.xml'
-		mvnDir = '/var/jenkins_home/tools_jk/apache-maven-3.6.1/bin/'
-		targetDir = 'k8e-jk-git/target/${fileTarget}'
+		fileTarget = "build-${BUILD_ID}.zip"
+		targetDir = "${fileTarget}"
 		destinationDir = '../../tools_jk/build/'
 
     }
@@ -37,29 +36,24 @@ pipeline {
 		}
 		stage('Clean') {
 			steps {
-				echo "${mvnDir}"
-				sh "${mvnDir}mvn -f ${MAVEN_PATH} clean"
+				sh "mvn -f ${MAVEN_PATH} clean"
 			}
 		}
         stage('Build') {
             steps {
-				sh "${mvnDir}mvn -f ${MAVEN_PATH} install"
-            }
-            post {
-                success {
-                    echo "BUILD DONE"
-                }
+				sh "mvn -f ${MAVEN_PATH} install"
             }
         }
-		stage('Copy') {
+		stage('Zip & Copy') {
             steps {
 				echo "Target folder: ${targetDir}"
 				echo "Destination folder: ${destinationDir}"
+				zip dir: 'k8e-jk-git/target/', glob: '*.war', zipFile: "${fileTarget}"
 				sh "mv ${targetDir} ${destinationDir}"
             }
             post {
                 success {
-                    echo "COPY DONE"
+                    echo "COMPRESS & COPY DONE"
                 }
             }
         }
